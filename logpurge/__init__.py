@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
 import calendar
 import os
 import re
@@ -162,7 +163,7 @@ def main():
         quit()
 
     if args.noop and args.y:
-        print "Cannot have -f and -n at the same time. Try again."
+        print("Cannot have -f and -n at the same time. Try again.")
         quit()
 
     # Find dates in the filenames of all the files in the given directory
@@ -181,7 +182,7 @@ def main():
 
     # Print out which ones will be removed
     for file_, date in sorted(files_dates.items(), key=lambda x: x[1]):
-        print '{} - {} {}'.format(file_, date, file_ in files_to_remove)
+        print('{} - {} {}'.format(file_, date, file_ in files_to_remove))
 
     cont = None
     # No operation
