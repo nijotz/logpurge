@@ -129,7 +129,7 @@ def find_datetime(string):
             datedata = match.groupdict()
 
             # Convert the strings to ints
-            datedata = dict( [ (k, int(v)) for k,v in datedata.iteritems() if v is not None ] )
+            datedata = dict( [ (k, int(v)) for k,v in datedata.items() if v is not None ] )
 
             # The replace is because only sometimes do we have hour/min/sec
             dt = datetime(datedata['year'], datedata['month'],
