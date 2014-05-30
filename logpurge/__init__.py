@@ -119,7 +119,7 @@ def find_datetime(string):
 
     regexs = [
         # WE PERL NOW
-        re.compile('(?P<year>\d{4})[-_]?(?P<month>\d{2})[-_]?((?P<day>\d{2})[-_ ]?(?P<hour>\d{2})[-_:]?(?P<minute>\d{2})[-_:]?(?P<second>\d{2}))?'),
+        re.compile('(?P<year>\d{4})[-_]?(?P<month>\d{2})[-_]?(?P<day>\d{2})([-_ ]?(?P<hour>\d{2})[-_:]?(?P<minute>\d{2})[-_:]?(?P<second>\d{2}))?'),
     ]
 
     for regex in regexs:
@@ -128,7 +128,7 @@ def find_datetime(string):
             datedata = match.groupdict()
 
             # Convert the strings to ints
-            datedata = dict( [ (k, int(v)) for k,v in datedata.iteritems() ] )
+            datedata = dict( [ (k, int(v)) for k,v in datedata.iteritems() if v is not None ] )
 
             # The replace is because only sometimes do we have hour/min/sec
             dt = datetime(datedata['year'], datedata['month'],
