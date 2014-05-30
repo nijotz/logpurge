@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='logpurge',
-      version=0.1,
+      version=0.2,
       description='Logarithmically purge data',
       author='Nick Tzaperas',
       author_email='nick@nijotz.com',
