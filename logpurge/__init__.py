@@ -79,7 +79,7 @@ def get_purgeables(items, now=time.time()):
 
     # Sort the items dictionary by the timestamp values
     sorted_items = [ (k,v) for k,v in items.items() ]
-    sorted_items = sorted(sorted_items, lambda x,y: cmp(x[1], y[1]))
+    sorted_items = sorted(sorted_items, key=lambda x: x[1])
 
     remove = []
     current = 0
@@ -179,7 +179,7 @@ def main():
     # Get the dates that need removing
     files_to_remove = get_purgeables(files_timestamps)
 
-    # Print out which ones will be removed
+    # Print out which ones will be removed, sorted by datetime
     for file_, date in sorted(files_dates.items(), key=lambda x: x[1]):
         print('{0} - {1} {2}'.format(file_, date, file_ in files_to_remove))
 
