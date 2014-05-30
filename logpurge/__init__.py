@@ -118,11 +118,8 @@ def find_datetime(string):
     """
 
     regexs = [
-        re.compile('(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})-(?P<hour>\d{2}):(?P<minute>\d{2}):(?P<second>\d{2})'),
-        re.compile('(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2}) (?P<hour>\d{1,2}):(?P<minute>\d{2}):(?P<second>\d{2})'),
-        re.compile('(?P<year>\d{4})_(?P<month>\d{2})_(?P<day>\d{2})_(?P<hour>\d{2})_(?P<minute>\d{2})_(?P<second>\d{2})'),
-        re.compile('(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})'),
-        re.compile('(?P<year>\d{4})(?P<month>\d{2})(?P<day>\d{2})'),
+        # WE PERL NOW
+        re.compile('(?P<year>\d{4})[-_]?(?P<month>\d{2})[-_]?((?P<day>\d{2})[-_ ]?(?P<hour>\d{2})[-_:]?(?P<minute>\d{2})[-_:]?(?P<second>\d{2}))?'),
     ]
 
     for regex in regexs:
@@ -183,7 +180,7 @@ def main():
     files_to_remove = get_purgeables(files_timestamps)
 
     # Print out which ones will be removed
-    for file_, date in files_dates.items():
+    for file_, date in sorted(files_dates.items(), key=lambda x: x[1]):
         print '{} - {} {}'.format(file_, date, file_ in files_to_remove)
 
     cont = None
