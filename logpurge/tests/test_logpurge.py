@@ -15,7 +15,7 @@ class TestLogPurge(TestCase):
     def test_file_removal(self):
         for i in range(0,100):
             date_ = date.today() - timedelta(days=i * 7)
-            filename = 'somefile{}-{}'.format(i, date_)
+            filename = 'somefile{0}-{1}'.format(i, date_)
             open(os.path.join(self.tempdir, filename), 'a').close()
 
         args = ['-d',
@@ -25,5 +25,5 @@ class TestLogPurge(TestCase):
         results = self.env.run(
             'python ./logpurge/__init__.py ' + args_str,
             cwd=os.getcwd())
-        results = self.env.run('bash -c "ls {} | wc -l"'.format(self.tempdir)).stdout
+        results = self.env.run('bash -c "ls {0} | wc -l"'.format(self.tempdir)).stdout
         self.assertEqual(results, '40\n')

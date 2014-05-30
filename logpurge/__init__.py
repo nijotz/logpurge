@@ -71,7 +71,7 @@ def get_purgeables(items, now=time.time()):
     >>> items = {}
     >>> for i in range(0,100):
     ...     timestamp = time_to_timestamp(datetime.now() - timedelta(days=i))
-    ...     items['item{}'.format(i)] = timestamp
+    ...     items['item{0}'.format(i)] = timestamp
     ...
     >>> len(get_purgeables(items))
     60
@@ -182,7 +182,7 @@ def main():
 
     # Print out which ones will be removed
     for file_, date in sorted(files_dates.items(), key=lambda x: x[1]):
-        print('{} - {} {}'.format(file_, date, file_ in files_to_remove))
+        print('{0} - {1} {2}'.format(file_, date, file_ in files_to_remove))
 
     cont = None
     # No operation
