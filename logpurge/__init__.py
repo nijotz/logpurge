@@ -168,13 +168,12 @@ def main():
 
     # Find dates in the filenames of all the files in the given directory
     files = os.listdir(args.directory[0])
-    files_dates = dict([ (f, find_datetime(f)) for f in files ])
+    files_dates = [ (f, find_datetime(f)) for f in files ]
 
     # Ignore files with incomprehensible dates
-    for k, v in files_dates.items():
-        if v is None:
-            files_dates.pop(k)
+    files_dates = dict([ (f, d) for (f, d) in files_dates if d is not None ])
 
+    # Turn dates into unix timestamp
     files_timestamps = dict([ (f, calendar.timegm(date.utctimetuple())) for f, date in files_dates.items() ])
 
     # Get the dates that need removing
